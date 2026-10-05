@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+/*
+  Layout: full-bleed dark canvas, content constrained to 1120px
+  Type: Bricolage Grotesque (display) + DM Sans (body)
+  Color: near-black base, electric indigo brand, amber settle-accent
+*/
+
+:root {
+  --bg:        #0C0C14;
+  --surface:   #13131E;
+  --surface-2: #1A1A28;
+  --border:    rgba(255,255,255,0.07);
+  --brand:     #4F6EF7;
+  --brand-dim: rgba(79,110,247,0.12);
+  --brand-border: rgba(79,110,247,0.25);
+  --settle:    #F0A050;
+  --settle-dim: rgba(240,160,80,0.12);
+  --text:      #E6E6F0;
+  --text-2:    #9898B8;
+  --text-3:    #55556A;
+  --font-display: 'Bricolage Grotesque', system-ui, sans-serif;
+  --font-body:    'DM Sans', system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes drawIn {
+  from { stroke-dashoffset: var(--len); }
+  to   { stroke-dashoffset: 0; }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  text-wrap: balance;
+  margin: 0;
+}
+p { margin: 0; }
+a { color: inherit; text-decoration: none; }
