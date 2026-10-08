@@ -26,7 +26,7 @@ export default function FAQAccordion() {
               fontFamily: "var(--font-body)",
             }}
           >
-            <span style={{ fontSize: 15, fontWeight: 500, color: "var(--text)", lineHeight: 1.4 }}>{item.q}</span>
+            <span style={{ fontSize: "var(--font-size-base)", fontWeight: "var(--font-weight-medium)", color: "var(--text)", lineHeight: 1.4 }}>{item.q}</span>
             <motion.svg
               width="16" height="16" viewBox="0 0 16 16" fill="none"
               animate={{ rotate: open === i ? 45 : 0 }}
@@ -45,7 +45,7 @@ export default function FAQAccordion() {
                 transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
                 style={{ overflow: "hidden" }}
               >
-                <div style={{ paddingBottom: 20, fontSize: 14, color: "var(--text-2)", lineHeight: 1.75, maxWidth: 620 }}>
+                <div style={{ paddingBottom: 20, fontSize: "var(--font-size-sm)", color: "var(--text-2)", lineHeight: 1.75, maxWidth: 620 }}>
                   {item.a}
                 </div>
               </motion.div>

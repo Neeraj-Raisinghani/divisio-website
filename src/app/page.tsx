@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import AppMock from "@/components/AppMock";
+import AppScreenshot from "@/components/AppScreenshot";
 import DebtGraph from "@/components/DebtGraph";
 import FAQAccordion from "@/components/FAQAccordion";
 import HomeContactForm from "@/components/HomeContactForm";
 import RevealSection from "@/components/RevealSection";
+import Button from "@/components/Button";
 
 export const metadata: Metadata = {
   title: "Divisio | Split expenses, not friendships.",
@@ -43,6 +45,20 @@ const wrap: React.CSSProperties   = { maxWidth: 1160, margin: "0 auto" };
 const narrow: React.CSSProperties = { maxWidth: 740,  margin: "0 auto", padding: "0 clamp(24px, 5vw, 64px)" };
 const SP = "clamp(60px, 9vw, 112px) clamp(24px, 5vw, 64px)" as const;
 
+const features = [
+  { n: "01", href: "/features/debt-simplification", title: "Debt simplification", body: "Graph reduction algorithm finds the minimum payments to clear all balances. Works for any group size.", color: "var(--color-blue-500)", bg: "var(--color-blue-100)", border: "var(--color-blue-200)" },
+  { n: "02", href: "/features/flexible-splits",       title: "Flexible splits",       body: "Equal, exact amounts, percentages, or shares. Every real-world split scenario handled.", color: "var(--color-green-700)", bg: "var(--color-green-100)", border: "var(--color-green-200)" },
+  { n: "03", href: "/features/real-time-balances",    title: "Real-time balances",    body: "Add an expense and every member sees their balance update instantly via Supabase Realtime.", color: "var(--color-orange-500)", bg: "var(--color-orange-100)", border: "var(--color-orange-200)" },
+  { n: "04", href: "/features/group-management",      title: "Group management",      body: "Separate groups for each trip, flat, or squad. Unlimited groups, full history, invite via link.", color: "var(--color-purple-700)", bg: "var(--color-purple-100)", border: "var(--color-purple-200)" },
+  { n: "05", href: "/features/settle-summary",        title: "Settle summary",        body: "One screen showing exactly who pays whom. Share directly to WhatsApp.", color: "var(--color-yellow-700)", bg: "var(--color-yellow-100)", border: "var(--color-yellow-200)" },
+];
+
+const useCases = [
+  { title: "Friend trips",  body: "Goa, Manali, Thailand. Log expenses as you go, settle when you land back home. Works across hotels, activities, food, even when different people join different days.", href: "/use-cases#trips", color: "var(--color-blue-500)", bg: "var(--color-blue-100)" },
+  { title: "Flatmates",     body: "Rent, electricity, groceries, the Netflix plan. Monthly balances, zero confusion. No more reconstructing who paid for what at the end of the month.", href: "/use-cases#flatmates", color: "var(--color-green-700)", bg: "var(--color-green-100)" },
+  { title: "Friend groups", body: "Dinners, concerts, road trips, shared subscriptions. Everyone always knows where they stand. The group keeps moving without the money conversation slowing it down.", href: "/use-cases#groups", color: "var(--color-orange-500)", bg: "var(--color-orange-100)" },
+];
+
 export default function Home() {
   return (
     <>
@@ -57,13 +73,13 @@ export default function Home() {
               <h1 style={{
                 fontFamily: "var(--font-display)",
                 fontSize: "clamp(42px, 5.5vw, 68px)",
-                fontWeight: 800, lineHeight: 1.04, letterSpacing: "-0.035em", marginBottom: 22,
+                fontWeight: "var(--font-weight-bold)", lineHeight: 1.04, letterSpacing: "-0.035em", marginBottom: 22,
                 animation: "fadeUp 0.75s cubic-bezier(0.22,1,0.36,1) both",
               }}>
                 Split expenses,<br />not friendships.
               </h1>
               <p style={{
-                fontSize: 17, color: "var(--text-2)", lineHeight: 1.7, maxWidth: 400, marginBottom: 36,
+                fontSize: "var(--font-size-md)", color: "var(--text-2)", lineHeight: 1.7, maxWidth: 400, marginBottom: 36,
                 animation: "fadeUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.12s both",
               }}>
                 Track shared costs for trips, flats, and friend groups. Divisio figures out who pays whom with the fewest transfers possible.
@@ -72,16 +88,10 @@ export default function Home() {
                 display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center",
                 animation: "fadeUp 0.6s cubic-bezier(0.22,1,0.36,1) 0.22s both",
               }}>
-                <a href="https://app.divisio.in"
-                  style={{ padding: "11px 22px", borderRadius: 9, background: "var(--brand)", color: "#fff", fontSize: 15, fontWeight: 600, letterSpacing: "-0.01em" }}>
-                  Try it free
-                </a>
-                <a href="https://app.divisio.in/demo"
-                  style={{ padding: "11px 22px", borderRadius: 9, color: "var(--text-2)", fontSize: 15, fontWeight: 500, border: "1px solid var(--border)", background: "transparent" }}>
-                  See a demo
-                </a>
+                <Button href="https://app.divisio.in" size="lg" hierarchy="primary" shape="rounded">Try it free</Button>
+                <Button href="https://app.divisio.in/demo" size="lg" hierarchy="ghost" shape="rounded">See a demo</Button>
               </div>
-              <p style={{ fontSize: 12, color: "var(--text-3)", marginTop: 14, animation: "fadeUp 0.5s 0.5s both" }}>
+              <p style={{ fontSize: "var(--font-size-xs)", color: "var(--text-3)", marginTop: 14, animation: "fadeUp 0.5s 0.5s both" }}>
                 No credit card. No download. Works in any browser.
               </p>
             </div>
@@ -93,17 +103,17 @@ export default function Home() {
       </section>
 
       {/* ── Problem statement ── */}
-      <section style={{ borderTop: "1px solid var(--border)", padding: SP }}>
+      <section style={{ borderTop: "1px solid var(--border)", padding: SP, background: "var(--color-blue-100)" }}>
         <RevealSection>
           <div style={narrow}>
             <p style={{
               fontFamily: "var(--font-display)",
               fontSize: "clamp(22px, 3vw, 32px)",
-              fontWeight: 600, lineHeight: 1.45, letterSpacing: "-0.02em",
-              color: "var(--text-2)",
+              fontWeight: "var(--font-weight-semibold)", lineHeight: 1.45, letterSpacing: "-0.02em",
+              color: "var(--color-blue-700)",
             }}>
               Every trip ends with 200 WhatsApp messages. Half of them are just &ldquo;wait who paid for the hotel?&rdquo; The spreadsheet is abandoned. The reminders get awkward.{" "}
-              <span style={{ color: "var(--text)" }}>Divisio fixes this in one tap.</span>
+              <span style={{ color: "var(--color-blue-500)" }}>Divisio fixes this in one tap.</span>
             </p>
           </div>
         </RevealSection>
@@ -118,14 +128,14 @@ export default function Home() {
                 <h2 style={{
                   fontFamily: "var(--font-display)",
                   fontSize: "clamp(28px, 3.5vw, 46px)",
-                  fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1.08, marginBottom: 20,
+                  fontWeight: "var(--font-weight-bold)", letterSpacing: "-0.03em", lineHeight: 1.08, marginBottom: 20,
                 }}>
                   The fewest<br />payments.<br />Every time.
                 </h2>
-                <p style={{ fontSize: 15, color: "var(--text-2)", lineHeight: 1.75, marginBottom: 16 }}>
+                <p style={{ fontSize: "var(--font-size-base)", color: "var(--text-2)", lineHeight: 1.75, marginBottom: 16 }}>
                   Most expense apps track who paid. They leave you to figure out who pays whom. That math is surprisingly hard and groups almost never find the optimal answer.
                 </p>
-                <p style={{ fontSize: 15, color: "var(--text-2)", lineHeight: 1.75 }}>
+                <p style={{ fontSize: "var(--font-size-base)", color: "var(--text-2)", lineHeight: 1.75 }}>
                   Divisio treats the group&apos;s debts as a graph and runs a reduction algorithm. 10 people, 45 possible transfers, reduced to 9 or fewer.
                 </p>
               </div>
@@ -147,28 +157,24 @@ export default function Home() {
               <h2 style={{
                 fontFamily: "var(--font-display)",
                 fontSize: "clamp(26px, 3vw, 38px)",
-                fontWeight: 700, letterSpacing: "-0.025em", lineHeight: 1.1,
+                fontWeight: "var(--font-weight-bold)", letterSpacing: "-0.025em", lineHeight: 1.1,
               }}>
                 What Divisio does.
               </h2>
             </RevealSection>
             <div>
-              {[
-                { n: "01", href: "/features/debt-simplification", title: "Debt simplification", body: "Graph reduction algorithm finds the minimum payments to clear all balances. Works for any group size." },
-                { n: "02", href: "/features/flexible-splits",       title: "Flexible splits",       body: "Equal, exact amounts, percentages, or shares. Every real-world split scenario handled." },
-                { n: "03", href: "/features/real-time-balances",    title: "Real-time balances",    body: "Add an expense and every member sees their balance update instantly via Supabase Realtime." },
-                { n: "04", href: "/features/group-management",      title: "Group management",      body: "Separate groups for each trip, flat, or squad. Unlimited groups, full history, invite via link." },
-                { n: "05", href: "/features/settle-summary",        title: "Settle summary",        body: "One screen showing exactly who pays whom. Share directly to WhatsApp." },
-              ].map((f, i) => (
+              {features.map((f, i) => (
                 <RevealSection key={f.n} delay={i * 0.07} y={12}>
                   <Link
                     href={f.href}
-                    style={{ display: "grid", gridTemplateColumns: "36px 1fr", gap: 20, padding: "24px 0", borderTop: "1px solid var(--border)", textDecoration: "none" }}
+                    style={{ display: "grid", gridTemplateColumns: "48px 1fr", gap: 20, padding: "24px 0", borderTop: "1px solid var(--border)", textDecoration: "none" }}
                   >
-                    <span style={{ fontSize: 11, color: "var(--text-3)", paddingTop: 3, fontVariantNumeric: "tabular-nums", fontWeight: 500 }}>{f.n}</span>
+                    <div style={{ width: 36, height: 36, borderRadius: "var(--radius-2)", background: f.bg, border: `1px solid ${f.border}`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                      <span style={{ fontSize: "var(--font-size-xs)", color: f.color, fontVariantNumeric: "tabular-nums", fontWeight: "var(--font-weight-bold)" }}>{f.n}</span>
+                    </div>
                     <div>
-                      <div style={{ fontFamily: "var(--font-display)", fontSize: 17, fontWeight: 600, letterSpacing: "-0.015em", marginBottom: 6 }}>{f.title}</div>
-                      <div style={{ fontSize: 14, color: "var(--text-2)", lineHeight: 1.65 }}>{f.body}</div>
+                      <div style={{ fontFamily: "var(--font-display)", fontSize: "var(--font-size-md)", fontWeight: "var(--font-weight-semibold)", letterSpacing: "-0.015em", marginBottom: 6, color: "var(--text)" }}>{f.title}</div>
+                      <div style={{ fontSize: "var(--font-size-sm)", color: "var(--text-2)", lineHeight: 1.65 }}>{f.body}</div>
                     </div>
                   </Link>
                 </RevealSection>
@@ -183,23 +189,20 @@ export default function Home() {
       <section style={{ padding: SP, borderTop: "1px solid var(--border)" }}>
         <div style={{ ...wrap, padding: "0 clamp(24px, 5vw, 64px)" }}>
           <RevealSection>
-            <p style={{ fontSize: 12, fontWeight: 600, letterSpacing: "0.07em", textTransform: "uppercase", color: "var(--text-3)", marginBottom: 40 }}>Built for</p>
+            <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(22px, 2.5vw, 32px)", fontWeight: "var(--font-weight-bold)", letterSpacing: "-0.025em", marginBottom: 40 }}>Built for every situation.</h2>
           </RevealSection>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 0 }} className="three-col">
-            {[
-              { title: "Friend trips",  body: "Goa, Manali, Thailand. Log expenses as you go, settle when you land back home. Works across hotels, activities, food, even when different people join different days.", href: "/use-cases#trips" },
-              { title: "Flatmates",     body: "Rent, electricity, groceries, the Netflix plan. Monthly balances, zero confusion. No more reconstructing who paid for what at the end of the month.", href: "/use-cases#flatmates" },
-              { title: "Friend groups", body: "Dinners, concerts, road trips, shared subscriptions. Everyone always knows where they stand. The group keeps moving without the money conversation slowing it down.", href: "/use-cases#groups" },
-            ].map((uc, i) => (
+            {useCases.map((uc, i) => (
               <RevealSection key={uc.title} delay={i * 0.1} y={16}>
                 <Link href={uc.href} style={{
                   display: "block", textDecoration: "none",
                   padding: `0 ${i < 2 ? 40 : 0}px 0 ${i > 0 ? 40 : 0}px`,
                   borderLeft: i > 0 ? "1px solid var(--border)" : "none",
                 }}>
-                  <div style={{ fontFamily: "var(--font-display)", fontSize: 19, fontWeight: 700, letterSpacing: "-0.02em", marginBottom: 12 }}>{uc.title}</div>
-                  <p style={{ fontSize: 14, color: "var(--text-2)", lineHeight: 1.7, marginBottom: 16 }}>{uc.body}</p>
-                  <span style={{ fontSize: 13, color: "var(--brand)" }}>Read more →</span>
+                  <div style={{ width: 4, height: 32, borderRadius: "var(--radius-full)", background: uc.color, marginBottom: 16 }} />
+                  <div style={{ fontFamily: "var(--font-display)", fontSize: "var(--font-size-lg)", fontWeight: "var(--font-weight-bold)", letterSpacing: "-0.02em", marginBottom: 12 }}>{uc.title}</div>
+                  <p style={{ fontSize: "var(--font-size-sm)", color: "var(--text-2)", lineHeight: 1.7, marginBottom: 16 }}>{uc.body}</p>
+                  <span style={{ fontSize: "var(--font-size-sm)", color: uc.color, fontWeight: "var(--font-weight-medium)" }}>Read more →</span>
                 </Link>
               </RevealSection>
             ))}
@@ -207,22 +210,18 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Demo video ── */}
+      {/* ── App screenshot ── */}
       <section style={{ padding: SP, borderTop: "1px solid var(--border)" }}>
         <div style={{ ...wrap, padding: "0 clamp(24px, 5vw, 64px)" }}>
           <RevealSection>
-            <div style={{ marginBottom: 36 }}>
-              <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(24px, 3vw, 38px)", fontWeight: 700, letterSpacing: "-0.025em", marginBottom: 10 }}>See it in action</h2>
-              <p style={{ fontSize: 15, color: "var(--text-2)" }}>A group settles a 5-day trip in under a minute.</p>
+            <div style={{ marginBottom: 40 }}>
+              <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(24px, 3vw, 38px)", fontWeight: "var(--font-weight-bold)", letterSpacing: "-0.025em", marginBottom: 10 }}>Everything in one place.</h2>
+              <p style={{ fontSize: "var(--font-size-base)", color: "var(--text-2)" }}>Expenses, balances, and the settle plan — one screen, real time.</p>
             </div>
           </RevealSection>
           <RevealSection delay={0.1}>
-            {/* Replace with: <iframe src="YOUR_YOUTUBE_OR_LOOM_URL" ... /> */}
-            <div style={{ borderRadius: 14, border: "1px solid var(--border)", background: "var(--surface)", aspectRatio: "16/9", display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", gap: 14 }}>
-              <div style={{ width: 56, height: 56, borderRadius: "50%", background: "var(--brand)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M8 5.5L18.5 12L8 18.5V5.5Z" fill="white" /></svg>
-              </div>
-              <span style={{ fontSize: 13, color: "var(--text-3)" }}>Add YouTube or Loom embed</span>
+            <div style={{ overflowX: "auto" }}>
+              <AppScreenshot />
             </div>
           </RevealSection>
         </div>
@@ -233,7 +232,7 @@ export default function Home() {
         <div style={{ ...wrap, padding: "0 clamp(24px, 5vw, 64px)" }}>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 64, alignItems: "start" }} className="two-col">
             <RevealSection>
-              <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(24px, 3vw, 36px)", fontWeight: 700, letterSpacing: "-0.025em", lineHeight: 1.15 }}>
+              <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(24px, 3vw, 36px)", fontWeight: "var(--font-weight-bold)", letterSpacing: "-0.025em", lineHeight: 1.15 }}>
                 Questions
               </h2>
             </RevealSection>
@@ -247,10 +246,10 @@ export default function Home() {
         <div style={{ ...wrap, padding: "0 clamp(24px, 5vw, 64px)" }}>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "clamp(40px, 6vw, 80px)", alignItems: "start" }} className="two-col">
             <RevealSection>
-              <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(24px, 3vw, 36px)", fontWeight: 700, letterSpacing: "-0.025em", lineHeight: 1.15, marginBottom: 14 }}>
+              <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(24px, 3vw, 36px)", fontWeight: "var(--font-weight-bold)", letterSpacing: "-0.025em", lineHeight: 1.15, marginBottom: 14 }}>
                 Got a question<br />or found a bug?
               </h2>
-              <p style={{ fontSize: 15, color: "var(--text-2)", lineHeight: 1.7 }}>
+              <p style={{ fontSize: "var(--font-size-base)", color: "var(--text-2)", lineHeight: 1.7 }}>
                 We read every message and reply within a day. Feature ideas welcome too.
               </p>
             </RevealSection>
@@ -262,27 +261,22 @@ export default function Home() {
       </section>
 
       {/* ── CTA ── */}
-      <section style={{ padding: "clamp(60px, 9vw, 112px) clamp(24px, 5vw, 64px) clamp(80px, 12vw, 140px)", borderTop: "1px solid var(--border)" }}>
+      <section style={{ padding: "clamp(60px, 9vw, 112px) clamp(24px, 5vw, 64px) clamp(80px, 12vw, 140px)", background: "var(--color-blue-500)" }}>
         <RevealSection>
           <div style={narrow}>
             <h2 style={{
               fontFamily: "var(--font-display)",
               fontSize: "clamp(32px, 4.5vw, 58px)",
-              fontWeight: 800, letterSpacing: "-0.03em", lineHeight: 1.05, marginBottom: 28,
+              fontWeight: "var(--font-weight-bold)", letterSpacing: "-0.03em", lineHeight: 1.05, marginBottom: 28,
+              color: "#fff",
             }}>
               No more money<br />arguments.
             </h2>
             <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-              <a href="https://app.divisio.in"
-                style={{ padding: "12px 24px", borderRadius: 9, background: "var(--brand)", color: "#fff", fontSize: 15, fontWeight: 600 }}>
-                Try it free
-              </a>
-              <a href="https://app.divisio.in/demo"
-                style={{ padding: "12px 24px", borderRadius: 9, background: "transparent", color: "var(--text-2)", fontSize: 15, fontWeight: 500, border: "1px solid var(--border)" }}>
-                Try demo account
-              </a>
+              <Button href="https://app.divisio.in" size="lg" hierarchy="primary" shape="rounded" style={{ background: "#fff", color: "var(--color-blue-500)" }}>Try it free</Button>
+              <Button href="https://app.divisio.in/demo" size="lg" hierarchy="ghost" shape="rounded" style={{ color: "rgba(255,255,255,0.8)", border: "1px solid rgba(255,255,255,0.3)" }}>Try demo account</Button>
             </div>
-            <p style={{ fontSize: 12, color: "var(--text-3)", marginTop: 16 }}>Free. No credit card. No download.</p>
+            <p style={{ fontSize: "var(--font-size-xs)", color: "rgba(255,255,255,0.6)", marginTop: 16 }}>Free. No credit card. No download.</p>
           </div>
         </RevealSection>
       </section>

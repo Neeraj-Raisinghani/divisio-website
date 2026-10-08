@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, DM_Sans } from "next/font/google";
+import { Bricolage_Grotesque, Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -11,9 +11,9 @@ const bricolage = Bricolage_Grotesque({
   display: "swap",
 });
 
-const dmSans = DM_Sans({
+const inter = Inter({
   subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-body",
   display: "swap",
 });
@@ -80,7 +80,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${bricolage.variable} ${dmSans.variable}`}>
+    <html lang="en" className={`${bricolage.variable} ${inter.variable}`}>
       <body>
         <Navbar />
         <main>{children}</main>

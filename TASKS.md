@@ -168,6 +168,14 @@ Each task includes: what needs to be done, exactly how to do it, and why it matt
 
 ---
 
+## Font Decision (Locked)
+
+**Bricolage Grotesque is the approved display font — keep it.**
+
+The team reviewed the font and confirmed Bricolage Grotesque is the right choice for headings and display text. Do not replace or swap it. It is loaded via `next/font/google` in `src/app/layout.tsx` as `--font-display`. DM Sans remains the body font (`--font-body`).
+
+---
+
 ## 7. Brand Colors
 
 **What:** Replace the placeholder indigo palette with Divisio's real brand colors once they are decided.

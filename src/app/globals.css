@@ -1,26 +1,169 @@
 @import "tailwindcss";
 
 /*
-  Layout: full-bleed dark canvas, content constrained to 1120px
-  Type: Bricolage Grotesque (display) + DM Sans (body)
-  Color: near-black base, electric indigo brand, amber settle-accent
+  Layout: full-bleed light canvas, content constrained to 1120px
+  Type: Bricolage Grotesque (display) + Inter (body) — matches web app
+  Color: light grey base, near-black brand, blue accent — matches web app design system
 */
 
 :root {
-  --bg:        #0C0C14;
-  --surface:   #13131E;
-  --surface-2: #1A1A28;
-  --border:    rgba(255,255,255,0.07);
-  --brand:     #4F6EF7;
-  --brand-dim: rgba(79,110,247,0.12);
-  --brand-border: rgba(79,110,247,0.25);
-  --settle:    #F0A050;
-  --settle-dim: rgba(240,160,80,0.12);
-  --text:      #E6E6F0;
-  --text-2:    #9898B8;
-  --text-3:    #55556A;
+  /* ── Primary scale ── */
+  --color-primary-50:  #FFFFFF;
+  --color-primary-100: #F8F8F8;
+  --color-primary-200: #EDEDED;
+  --color-primary-300: #E0E0E0;
+  --color-primary-400: #BFBFBF;
+  --color-primary-500: #999999;
+  --color-primary-600: #666666;
+  --color-primary-700: #444444;
+  --color-primary-800: #2A2A2A;
+  --color-primary-900: #121212;
+
+  /* ── Blue ── */
+  --color-blue-100: #E8F0FC;
+  --color-blue-200: #C6D8F8;
+  --color-blue-300: #94B8F0;
+  --color-blue-400: #5E8FE3;
+  --color-blue-500: #1055C9;
+  --color-blue-600: #0E4BB4;
+  --color-blue-700: #0C429D;
+  --color-blue-800: #083374;
+  --color-blue-900: #061F47;
+
+  /* ── Green ── */
+  --color-green-100: #EBF9EB;
+  --color-green-200: #BDF3C3;
+  --color-green-300: #8AE995;
+  --color-green-400: #4FDA5D;
+  --color-green-500: #10CB29;
+  --color-green-600: #0EB523;
+  --color-green-700: #0C9E1E;
+  --color-green-800: #097C17;
+  --color-green-900: #064E0F;
+
+  /* ── Orange ── */
+  --color-orange-100: #FBEEE8;
+  --color-orange-200: #F6D0BB;
+  --color-orange-300: #EEA988;
+  --color-orange-400: #E2784E;
+  --color-orange-500: #CB4810;
+
+  /* ── Red ── */
+  --color-red-100: #FBEAE8;
+  --color-red-300: #EE9188;
+  --color-red-400: #E25C4E;
+  --color-red-500: #CB2910;
+  --color-red-600: #B3240E;
+  --color-red-700: #991E0C;
+  --color-red-800: #6F1609;
+  --color-red-900: #470E06;
+
+  /* ── Yellow ── */
+  --color-yellow-100: #FCFBE8;
+  --color-yellow-200: #F8F5BD;
+  --color-yellow-300: #F3ED8A;
+  --color-yellow-400: #EFE55A;
+  --color-yellow-500: #ECE519;
+  --color-yellow-600: #D0CA17;
+  --color-yellow-700: #B3AE14;
+  --color-yellow-800: #88840F;
+  --color-yellow-900: #59580A;
+
+  /* ── Purple ── */
+  --color-purple-100: #F7E8FB;
+
+  /* ── Semantic tokens mapped from scale ── */
+  --bg:        var(--color-primary-100);
+  --surface:   var(--color-primary-50);
+  --surface-2: var(--color-primary-200);
+  --border:    var(--color-primary-300);
+  --text:      var(--color-primary-900);
+  --text-2:    var(--color-primary-500);
+  --text-3:    var(--color-primary-600);
+
+  --brand:        var(--color-blue-500);
+  --brand-dim:    var(--color-blue-100);
+  --brand-border: var(--color-blue-200);
+
+  --settle:    var(--color-orange-500);
+  --settle-dim: var(--color-orange-100);
+
   --font-display: 'Bricolage Grotesque', system-ui, sans-serif;
-  --font-body:    'DM Sans', system-ui, sans-serif;
+  --font-body:    'Inter', system-ui, sans-serif;
+
+  /* Font sizes — exact from design system */
+  --font-size-xs:   12px;
+  --font-size-sm:   14px;
+  --font-size-base: 16px;
+  --font-size-md:   18px;
+  --font-size-lg:   20px;
+  --font-size-xl:   24px;
+  --font-size-2xl:  30px;
+  --font-size-3xl:  36px;
+  --font-size-4xl:  48px;
+
+  /* Line heights — exact from design system */
+  --line-height-xs:   16px;
+  --line-height-sm:   20px;
+  --line-height-base: 24px;
+  --line-height-md:   28px;
+  --line-height-lg:   28px;
+  --line-height-xl:   32px;
+  --line-height-2xl:  36px;
+  --line-height-3xl:  40px;
+  --line-height-4xl:  48px;
+
+  /* Font weights — exact from design system */
+  --font-weight-regular:  400;
+  --font-weight-medium:   500;
+  --font-weight-semibold: 600;
+  --font-weight-bold:     700;
+
+  /* Spacing — exact from design system */
+  --spacing-0:  0px;
+  --spacing-1:  2px;
+  --spacing-2:  4px;
+  --spacing-3:  6px;
+  --spacing-4:  8px;
+  --spacing-5:  10px;
+  --spacing-6:  12px;
+  --spacing-7:  14px;
+  --spacing-8:  16px;
+  --spacing-9:  18px;
+  --spacing-10: 20px;
+  --spacing-11: 22px;
+  --spacing-12: 24px;
+  --spacing-13: 26px;
+  --spacing-14: 28px;
+  --spacing-15: 30px;
+  --spacing-16: 32px;
+  --spacing-17: 34px;
+  --spacing-18: 36px;
+  --spacing-19: 38px;
+  --spacing-20: 40px;
+  --spacing-21: 42px;
+  --spacing-22: 44px;
+  --spacing-23: 46px;
+  --spacing-24: 48px;
+
+  /* Shadows — exact from design system */
+  --shadow-xs: 0 1px 2px 0 rgba(0,0,0,0.05);
+  --shadow-sm: 0 1px 3px 0 rgba(0,0,0,0.10), 0 1px 2px 0 rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 8px -2px rgba(0,0,0,0.10), 0 2px 4px -2px rgba(0,0,0,0.06);
+  --shadow-lg: 0 12px 16px -4px rgba(0,0,0,0.08), 0 4px 6px -2px rgba(0,0,0,0.03);
+  --shadow-xl: 0 20px 24px -4px rgba(0,0,0,0.08), 0 8px 8px -4px rgba(0,0,0,0.03);
+  --shadow-2xl: 0 24px 48px -12px rgba(0,0,0,0.18);
+  --shadow-3xl: 0 32px 64px -12px rgba(0,0,0,0.14);
+  --shadow-ring: 0 0 0 2px rgba(0,0,0,1.00);
+
+  /* Border radius — exact from design system */
+  --radius-0:    0px;
+  --radius-1:    4px;
+  --radius-2:    8px;
+  --radius-3:    12px;
+  --radius-4:    16px;
+  --radius-5:    24px;
+  --radius-full: 9999px;
 }
 
 * { box-sizing: border-box; }
@@ -53,7 +196,9 @@ body {
   font-size: 16px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   margin: 0;
+  letter-spacing: -0.01em;
 }
 
 h1, h2, h3, h4 {

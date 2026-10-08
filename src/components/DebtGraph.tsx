@@ -63,10 +63,10 @@ export default function DebtGraph() {
     <div ref={ref}>
       <div style={{ display: "grid", gridTemplateColumns: "1fr auto 1fr", gap: 16, alignItems: "center", marginBottom: 16 }}>
         <motion.div animate={{ opacity: showBefore ? 1 : 0.25 }} transition={{ duration: 0.6 }}
-          style={{ fontSize: 12, color: "var(--text-3)" }}>Without Divisio</motion.div>
-        <div style={{ color: "var(--text-3)", fontSize: 18 }}>→</div>
+          style={{ fontSize: "var(--font-size-xs)", color: "var(--text-3)" }}>Without Divisio</motion.div>
+        <div style={{ color: "var(--text-3)", fontSize: "var(--font-size-md)" }}>→</div>
         <motion.div animate={{ opacity: showAfter ? 1 : 0.25 }} transition={{ duration: 0.6 }}
-          style={{ fontSize: 12, color: "var(--brand)" }}>With Divisio</motion.div>
+          style={{ fontSize: "var(--font-size-xs)", color: "var(--brand)" }}>With Divisio</motion.div>
       </div>
 
       <svg viewBox="0 0 800 200" style={{ width: "100%", overflow: "visible" }}>
@@ -98,10 +98,10 @@ export default function DebtGraph() {
 
       <div style={{ display: "grid", gridTemplateColumns: "1fr auto 1fr", gap: 16, marginTop: 12 }}>
         <motion.div animate={{ opacity: showBefore ? 1 : 0.25 }} transition={{ duration: 0.6 }}
-          style={{ fontSize: 12, color: "var(--text-3)" }}>9 transfers needed</motion.div>
+          style={{ fontSize: "var(--font-size-xs)", color: "var(--text-3)" }}>9 transfers needed</motion.div>
         <div />
         <motion.div animate={{ opacity: showAfter ? 1 : 0.25 }} transition={{ duration: 0.6 }}
-          style={{ fontSize: 12, fontWeight: 600, color: showAfter ? "var(--brand)" : "var(--text-3)" }}>
+          style={{ fontSize: "var(--font-size-xs)", fontWeight: "var(--font-weight-semibold)", color: showAfter ? "var(--brand)" : "var(--text-3)" }}>
           {phase === "done" ? "3 transfers. Done." : "3 transfers."}
         </motion.div>
       </div>

@@ -15,11 +15,10 @@ export default function GroupManagementPage() {
       <section style={{ paddingTop: 120, paddingBottom: 80 }}>
         <div style={wrap}>
           <div style={{ maxWidth: 640 }}>
-            <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--brand)", marginBottom: 20 }}>Group Management</div>
-            <h1 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(30px, 4.5vw, 54px)", fontWeight: 800, letterSpacing: "-0.03em", lineHeight: 1.06, marginBottom: 24 }}>
+            <h1 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(30px, 4.5vw, 54px)", fontWeight: "var(--font-weight-bold)", letterSpacing: "-0.03em", lineHeight: 1.06, marginBottom: 24 }}>
               A group for every context.<br />Nothing mixed up.
             </h1>
-            <p style={{ fontSize: 16, color: "var(--text-2)", lineHeight: 1.75 }}>
+            <p style={{ fontSize: "var(--font-size-base)", color: "var(--text-2)", lineHeight: 1.75 }}>
               Goa trip, flat expenses, college group, work team lunch  |  every group gets its own space, its own history, and its own settlement state.
             </p>
           </div>
@@ -30,16 +29,16 @@ export default function GroupManagementPage() {
         <div style={wrap}>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16 }} className="three-col">
             {[
-              { title: "Unlimited groups", body: "Create as many groups as you need. No per-group limits." },
-              { title: "Invite via link", body: "Share a group link. Members join instantly  |  no account required to view." },
-              { title: "Full expense history", body: "Every expense logged, searchable, and editable. Nothing lost in a chat thread." },
-              { title: "Edit at any time", body: "Made a mistake? Update or remove any expense. Balances recalculate automatically." },
-              { title: "Member management", body: "Add or remove members. Balances adjust for any outstanding amounts." },
-              { title: "Group archive", body: "Trip over? Archive the group. The history stays  |  you can always look back." },
+              { title: "Unlimited groups", body: "Create as many groups as you need. No per-group limits.", color: "var(--color-blue-500)", bg: "var(--color-blue-100)" },
+              { title: "Invite via link", body: "Share a group link. Members join instantly — no account required to view.", color: "var(--color-green-700)", bg: "var(--color-green-100)" },
+              { title: "Full expense history", body: "Every expense logged, searchable, and editable. Nothing lost in a chat thread.", color: "var(--color-orange-500)", bg: "var(--color-orange-100)" },
+              { title: "Edit at any time", body: "Made a mistake? Update or remove any expense. Balances recalculate automatically.", color: "var(--color-purple-700)", bg: "var(--color-purple-100)" },
+              { title: "Member management", body: "Add or remove members. Balances adjust for any outstanding amounts.", color: "var(--color-yellow-700)", bg: "var(--color-yellow-100)" },
+              { title: "Group archive", body: "Trip over? Archive the group. The history stays — you can always look back.", color: "var(--color-red-500)", bg: "var(--color-red-100)" },
             ].map((f) => (
-              <div key={f.title} style={{ padding: "22px 22px 26px", borderRadius: 14, background: "var(--surface)", border: "1px solid var(--border)" }}>
-                <div style={{ fontFamily: "var(--font-display)", fontSize: 15, fontWeight: 600, letterSpacing: "-0.01em", marginBottom: 10 }}>{f.title}</div>
-                <div style={{ fontSize: 13, color: "var(--text-2)", lineHeight: 1.65 }}>{f.body}</div>
+              <div key={f.title} style={{ padding: "22px 22px 26px", borderRadius: "var(--radius-4)", background: f.bg, border: "1px solid var(--border)" }}>
+                <div style={{ fontFamily: "var(--font-display)", fontSize: "var(--font-size-base)", fontWeight: "var(--font-weight-semibold)", letterSpacing: "-0.01em", marginBottom: 10, color: f.color }}>{f.title}</div>
+                <div style={{ fontSize: "var(--font-size-sm)", color: "var(--text-2)", lineHeight: 1.65 }}>{f.body}</div>
               </div>
             ))}
           </div>
