@@ -543,3 +543,59 @@ Each entry in `src/app/changelog/page.tsx` follows this structure:
 ```
 Add new entries at the top of the `entries` array so the newest release appears first.
 Keep the language user-facing ("You can now split by percentage") rather than technical ("Added percentage split type to SplitModal component").
+
+---
+
+## Completed Work Log
+
+### Session: October 2024 — Design system, components, and visual polish
+
+**Commits:** `9cae982`, `57b76db`, `7147e21`
+
+#### What was done
+
+**Design tokens (globals.css, lib/styles.ts)**
+- Replaced every hardcoded `fontSize` / `fontWeight` value site-wide with CSS custom property tokens (`--font-size-*`, `--font-weight-*`)
+- Added the full shadow token block from the Figma spec: `--shadow-xs` through `--shadow-3xl`, `--shadow-ring`
+- Exception: `src/app/opengraph-image.tsx` intentionally keeps hardcoded values — Satori cannot resolve CSS custom properties at render time
+
+**New components**
+- `src/components/Button.tsx` — Sizes: `sm` / `md` / `lg`. Hierarchy: `primary` (brand fill) / `secondary` (brand-dim) / `ghost` (transparent + border). Shapes: `rounded` / `pill` / `square`. Renders as `<a>` when `href` is given, else `<button>`. Supports `disabled`, `leftIcon`, `rightIcon`, `iconOnly`
+- `src/components/Tag.tsx` — Color variants: `blue` / `green` / `lime` / `orange` / `purple` / `red` / `dark`. Styles: `light` (soft tint) / `solid` (bold fill). Optional status dot
+- `src/components/AppScreenshot.tsx` — Coded app mockup (expense table + balance panel + settle summary) using only CSS tokens. Later replaced on homepage by the real product image
+
+**Color applied across the site**
+- Homepage: numbered colored badges, per–use-case accent bars, blue CTA section
+- About: green / blue / orange stat blocks
+- Use cases: per-case tag pills and settle card accents
+- Features index: Tag component per feature (blue / green / orange / purple / lime)
+- Flexible splits: per-card colors (blue / green / orange / purple)
+- Group management: per-card colors (blue / green / orange / purple / yellow / red)
+- Real-time balances: `--color-green-600` / `--color-red-500` for positive / negative amounts
+- Debt simplification: step cards colored by stage
+- Changelog: colored timeline dots and entry labels
+
+**UX cleanup**
+- Removed all eyebrow / label headings above section titles across every page
+- Removed emoji icons from use-cases section; replaced with a 4 × 32 px colored accent bar
+- Navbar "Try it free" and all form submit buttons replaced with the Button component
+- AppMock "Active" badge replaced with the Tag component
+
+**Product screenshot (public/divisio.png)**
+- Added real product showcase image (desktop dashboard + mobile app + settle-up panel)
+- Homepage "Everything in one place" section now uses `next/image` to display this image instead of the coded AppScreenshot component
+
+#### Why
+User requested: design system token rollout, more color throughout the site, emoji and eyebrow removal, shadow tokens, Button and Tag components matching the Figma spec, and a real app screenshot on the homepage.
+
+---
+
+### Git / Vercel deployment rules (set October 2024)
+
+These rules must be followed on every commit to this repo:
+
+1. **Git author email** — always `186796428+Neeraj-Raisinghani@users.noreply.github.com`. Never the Gmail address. Vercel Hobby checks the commit author against the linked GitHub account; wrong email = deploy blocked.
+2. **No `Co-Authored-By` lines** — Vercel Hobby treats unknown co-author emails as unauthorised collaborators and can block the deploy. Strip all `Co-Authored-By:` trailers from every commit message.
+3. **Never force-push** — `git push --force` can desync Vercel's webhook, causing it to build a stale or wrong commit.
+
+The local repo git config has been set to the correct email and name. Verify before committing with `git config user.email`.
