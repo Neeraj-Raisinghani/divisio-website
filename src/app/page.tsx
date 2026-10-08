@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import AppMock from "@/components/AppMock";
-import AppScreenshot from "@/components/AppScreenshot";
+import Image from "next/image";
 import DebtGraph from "@/components/DebtGraph";
 import FAQAccordion from "@/components/FAQAccordion";
 import HomeContactForm from "@/components/HomeContactForm";
@@ -221,7 +221,14 @@ export default function Home() {
           </RevealSection>
           <RevealSection delay={0.1}>
             <div style={{ overflowX: "auto" }}>
-              <AppScreenshot />
+              <Image
+                  src="/divisio.png"
+                  alt="Divisio app — dashboard, group balances and settle up screen"
+                  width={1456}
+                  height={816}
+                  style={{ width: "100%", height: "auto", borderRadius: "var(--radius-4)", boxShadow: "var(--shadow-2xl)", border: "1px solid var(--border)" }}
+                  priority
+                />
             </div>
           </RevealSection>
         </div>
