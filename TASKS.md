@@ -546,6 +546,57 @@ Keep the language user-facing ("You can now split by percentage") rather than te
 
 ---
 
+## 20. Custom 404 Pages per Subdomain
+
+**What:** Show a different 404 page depending on which domain the visitor is on — one for the main marketing site and one each for up to three subdomains (exact subdomains TBD).
+
+**Why:** A generic 404 with no context is a dead end. Each subdomain serves a different audience (marketing visitor vs. app user vs. blog reader vs. docs reader), so the 404 should match where they are — different copy, different CTA, different link back to the right home.
+
+**How (single Next.js app, middleware approach):**
+
+1. In `src/middleware.ts`, read the `host` header on every request, extract the subdomain, and set a response header `x-subdomain` so the 404 page can read it:
+   ```ts
+   import { NextResponse } from "next/server";
+   import type { NextRequest } from "next/server";
+
+   export function middleware(req: NextRequest) {
+     const host = req.headers.get("host") ?? "";
+     const subdomain = host.split(".")[0]; // "app", "blog", "docs", or "divisio" / "www"
+     const res = NextResponse.next();
+     res.headers.set("x-subdomain", subdomain);
+     return res;
+   }
+   ```
+
+2. In `src/app/not-found.tsx`, read that header with `next/headers` and render the right UI:
+   ```tsx
+   import { headers } from "next/headers";
+
+   const configs = {
+     app:  { title: "Page not found", cta: "Back to dashboard", href: "https://app.divisio.in" },
+     blog: { title: "Post not found", cta: "Browse all posts",  href: "https://blog.divisio.in" },
+     docs: { title: "Page not found", cta: "Go to docs home",   href: "https://docs.divisio.in" },
+     _default: { title: "Page not found", cta: "Go home", href: "/" },
+   };
+
+   export default async function NotFound() {
+     const sub = (await headers()).get("x-subdomain") ?? "_default";
+     const c = configs[sub as keyof typeof configs] ?? configs._default;
+     return (
+       <main>
+         <h1>{c.title}</h1>
+         <a href={c.href}>{c.cta}</a>
+       </main>
+     );
+   }
+   ```
+
+3. Style each variant to match its context — app 404 uses the app shell colours, marketing 404 uses the site's design system tokens.
+
+**Blocked on:** Confirm the three subdomains and what each 404 should say / link to before building.
+
+---
+
 ## Completed Work Log
 
 ### Session: October 2024 — Design system, components, and visual polish
